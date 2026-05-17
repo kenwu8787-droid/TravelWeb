@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Theme 1: Camping Warm */
+    --color-bg: #FFFBEB;
+    --color-primary: #F59E0B;
+    --color-secondary: #3B82F6;
+    --color-accent: #F472B6;
+    --color-text: #374151;
+    --color-dot: #E5E7EB;
+  }
+
+  .theme-pokemon {
+    /* Theme 2: Pokemon Pixel Game */
+    --color-bg: #F8FAFC;
+    --color-primary: #E3350D;
+    /* pokeRed */
+    --color-secondary: #3164B0;
+    /* pokeBlue */
+    --color-accent: #FFCC00;
+    /* pokeYellow */
+    --color-text: #1E293B;
+    /* gameDark */
+    --color-dot: transparent;
+    /* Disable radial gradient for pokemon if we want, or use a soft gray */
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Pokemon Specific Styles extracted from reference */
+  .pokedex-lens {
+    background: radial-gradient(circle at 30% 30%, #60A5FA, #2563EB, #1E3A8A);
+  }
+
+  .mart-awning {
+    background: repeating-linear-gradient(90deg, #4DA2E1, #4DA2E1 20px, #FFFFFF 20px, #FFFFFF 40px);
+  }
+
+  .pokeball-node {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #E3350D 46%, #1E293B 46%, #1E293B 54%, white 54%);
+    border: 3px solid #1E293B;
+    position: absolute;
+    left: -35px;
+    top: 24px;
+    z-index: 10;
+  }
+
+  .pokeball-node::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: white;
+    border: 2px solid #1E293B;
+    border-radius: 50%;
+  }
+
+  /* Triangle Node for Camping */
+  .triangle-icon {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid var(--color-primary);
+    position: absolute;
+    left: -35px;
+    top: 24px;
+    z-index: 10;
+  }
+
+  .card-grass {
+    background-color: #f0fdf4;
+    position: relative;
+    overflow: hidden;
+    background-image:
+      radial-gradient(#4ade80 1.5px, transparent 1.5px),
+      radial-gradient(#4ade80 1.5px, transparent 1.5px);
+    background-size: 44px 44px;
+    background-position: 0 0, 22px 22px;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .grass-overlay {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40 L0 30 L5 20 L10 30 L15 15 L20 30 L25 10 L30 30 L35 20 L40 30 L45 10 L50 30 L55 20 L60 30 L65 15 L70 30 L75 10 L80 30 L85 20 L90 30 L95 10 L100 30 L105 20 L110 30 L115 15 L120 30 L120 40 Z' fill='%2322c55e'/%3E%3C/svg%3E");
+    background-size: 100px 40px;
+    background-repeat: repeat-x;
+    image-rendering: pixelated;
+    animation: grassSway 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes grassSway {
+    from {
+      transform: translateX(-2px) skewX(-1deg);
+    }
+
+    to {
+      transform: translateX(2px) skewX(1deg);
+    }
+  }
+
+  .cloud-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'%3E%3Cpath d='M10 20 h10 v-5 h10 v-5 h20 v5 h10 v10 h-50 z' fill='%23ffffff' opacity='0.6'/%3E%3C/svg%3E");
+    background-size: 80px 32px;
+    animation: cloudDrift 6s linear infinite;
+    image-rendering: pixelated;
+  }
+
+  @keyframes cloudDrift {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: -80px 0;
+    }
+  }
+
+  .fly-pokemon {
+    image-rendering: pixelated;
+    animation: flyBob 1.2s ease-in-out infinite alternate;
+    filter: drop-shadow(-2px 2px 0 rgba(0, 0, 0, 0.2));
+  }
+
+  @keyframes flyBob {
+    from {
+      transform: scaleX(-1) translateY(-3px);
+    }
+
+    to {
+      transform: scaleX(-1) translateY(3px);
+    }
+  }
+
+  /* Pokedex Loader Styles */
+  .loader-pokeball {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #E3350D 46%, #1E293B 46%, #1E293B 54%, white 54%);
+    border: 6px solid #1E293B;
+    position: relative;
+    animation: spinPokeball 1s linear infinite;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .loader-pokeball::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 6px solid #1E293B;
+    border-radius: 50%;
+  }
+
+  @keyframes spinPokeball {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .blink-text {
+    animation: blinkText 1s steps(2, start) infinite;
+  }
+
+  @keyframes blinkText {
+    to {
+      visibility: hidden;
+    }
+  }
+
+  .bg-radial-camping {
+    background-image: radial-gradient(var(--color-dot) 2px, transparent 2px);
+    background-size: 20px 20px;
+  }
+}
