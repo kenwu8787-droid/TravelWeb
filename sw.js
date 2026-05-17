@@ -2,8 +2,8 @@ const CACHE_NAME = 'trip-app-cache-v1';
 
 // Add URLs you want to cache here
 const urlsToCache = [
-  '/',
-  '/index.html',
+  '/TravelWeb/',
+  '/TravelWeb/index.html',
   // You would typically add your compiled JS and CSS bundles here, 
   // or use a tool like Workbox for more robust dynamic caching.
 ];
